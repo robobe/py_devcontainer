@@ -3,14 +3,14 @@
     "build": {
         "dockerfile": "Dockerfile",
         "context": "..",
-        "target": "python_dev",
+        "target": "development",
         "args": {"VERSION": "0.0.1"} 
     },
     "runArgs": [
         "--hostname=dev",
         "--name=python-dev"
     ],
-    "postCreateCommand": "pip install -r /workspaces/py_docker_tutorial/requirements-dev.txt",
+    "postCreateCommand": "/usr/bin/bash -x ./.devcontainer/postCreateCommand.sh",
     "remoteUser": "user",
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/home/user/.local/bin"

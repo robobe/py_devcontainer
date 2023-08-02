@@ -1,5 +1,5 @@
-from app.main import add
+from app.main import calc
 
 def test_add():
-    result = add (1, 2)
-    assert result == 3
+    result = calc()
+    assert result == 20

@@ -24,6 +24,13 @@ FROM python_base as python_dev
     }
 }
 ```
+
+!!! note "build multistage docker"
+    ```bash
+    docker build --target development
+    ```
+     
+
 ---
 
 ## Permission
@@ -74,6 +81,14 @@ COPY ./requirements-dev.txt /tmp/requirements-dev.txt
 RUN pip install --no-`cache-dir --upgrade -r /home/user/requirements-dev.txt
 ```
 
+---
+
+## develop
+- Register the project
+
+```bash
+pip install --prefix=~/.local -e .
+```
 ---
 
 ## build wheel and deb
@@ -169,7 +184,26 @@ find . | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | xargs rm -rf
 - formatter (black, isort)
 - flake8 (linter)
 
+---
 
+## VSCode extensions
+- Python
+- Tabout
+- Code Spell Checker
+- Tasks
+
+#### TabOut
+Tab out quotes, brackets. etc
+[marketplace](https://marketplace.visualstudio.com/items?itemName=albert.TabOut)
+
+#### Code Spell Checker
+Spelling checker for source code
+[marketplace](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+#### Tasks
+Load VSCode Tasks into Status Bar.
+[marketplace](https://marketplace.visualstudio.com/items?itemName=actboy168.tasks)
+
+---
 
 ## References
 - [devcontainer.json schema](https://containers.dev/implementors/json_schema/)

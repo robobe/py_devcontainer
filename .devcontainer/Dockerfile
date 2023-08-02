@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 # ################################################
 
-FROM python_base as python_dev
+FROM python_base as development
 
 RUN apt-get update && apt-get install -y \
     git \
