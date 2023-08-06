@@ -184,6 +184,10 @@ find . | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | xargs rm -rf
 - formatter (black, isort)
 - flake8 (linter)
 
+!!! tip "Migration to Python Tools Extensions"
+     [Migration to Python Tools Extensions
+](https://github.com/microsoft/vscode-python/wiki/Migration-to-Python-Tools-Extensions)
+
 ---
 
 ## VSCode extensions
@@ -203,6 +207,58 @@ Spelling checker for source code
 Load VSCode Tasks into Status Bar.
 [marketplace](https://marketplace.visualstudio.com/items?itemName=actboy168.tasks)
 
+Tools extensions
+- [Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
+- [Flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)
+- [Black](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
+- [Mypy Type Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
+
+
+##### TODO
+- mypy type check not work wall, return to mypy self install `pip install mypy` with deprecated settings `"python.linting.mypyEnabled": true,`
+- Need to check isort extension usage
+- [Migration to Python Tools Extensions](https://github.com/microsoft/vscode-python/wiki/Migration-to-Python-Tools-Extensions)
+---
+
+
+#### docker-compose
+Using docker compose override capability
+- Use production / deploy compose file
+- Override/Add settings to support development
+
+for example add shared volume for vscode to mount code on remote
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    volumes:
+      - ./:/workspace
+```
+
+
+
+```json title="devcontainer.json" linenums="1" hl_lines="2-6"
+{
+    "name": "python-dev",
+    "dockerComposeFile": [
+        "../docker-compose.yaml",
+        "./docker-compose.dev.yaml"
+    ],
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "postCreateCommand": "/usr/bin/bash -x ./.devcontainer/postCreateCommand.sh",
+    "remoteUser": "user",
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/home/user/.local/bin"
+    },
+    "containerUser": "user",
+    "customizations": {
+    }
+}
+```
 ---
 
 ## References

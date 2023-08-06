@@ -1,15 +1,11 @@
 {
     "name": "python-dev",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": "..",
-        "target": "development",
-        "args": {"VERSION": "0.0.1"} 
-    },
-    "runArgs": [
-        "--hostname=dev",
-        "--name=python-dev"
+    "dockerComposeFile": [
+        "../docker-compose.yaml",
+        "./docker-compose.dev.yaml"
     ],
+    "service": "app",
+    "workspaceFolder": "/workspace",
     "postCreateCommand": "/usr/bin/bash -x ./.devcontainer/postCreateCommand.sh",
     "remoteUser": "user",
     "remoteEnv": {
@@ -20,26 +16,29 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
+                "ms-toolsai.jupyter",
                 "albert.TabOut",
                 "streetsidesoftware.code-spell-checker",
-                "actboy168.tasks"
+                "actboy168.tasks",
+                "ms-python.pylint",
+                "ms-python.flake8",
+                "ms-python.black-formatter",
+                "ms-python.isort"
             ],
             "settings": {
-                "python.linting.mypyEnabled": true,
                 "editor.formatOnSave": true,
                 "[python]": {
                     "editor.codeActionsOnSave": {
                         "source.organizeImports": true
                     }
                 },
-                "python.formatting.provider": "black",
                 "python.testing.pytestArgs": [
                     "tests"
                 ],
                 "python.testing.unittestEnabled": false,
                 "python.testing.pytestEnabled": true,
-                "python.linting.flake8Enabled": true,
-                "python.linting.enabled": true
+                "pylint.args": ["--rcfile=.pylintrc"],
+                "python.linting.mypyEnabled": true,
             }
         }
     }
