@@ -219,6 +219,29 @@ Tools extensions
 - mypy type check not work wall, return to mypy self install `pip install mypy` with deprecated settings `"python.linting.mypyEnabled": true,`
 - Need to check isort extension usage
 - [Migration to Python Tools Extensions](https://github.com/microsoft/vscode-python/wiki/Migration-to-Python-Tools-Extensions)
+
+
+#### tasks
+##### mypy
+
+```json
+"tasks": [
+        {
+            "label": "mypy",
+            "type": "shell",
+            "command": "mypy ${file}",
+            "options": {
+                "statusbar": {
+                    "color": "#22C1D6",
+                    "tooltip": "run mypy",
+                    "label": "mypy",
+                    "filePattern": "py"
+                }
+            }
+        }
+]
+```
+
 ---
 
 
