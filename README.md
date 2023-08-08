@@ -282,6 +282,20 @@ services:
     }
 }
 ```
+
+### VSCode Server
+vscode-server install on container
+
+```
+/vscode/vscode-server/bin/linux-x64/<commit>
+```
+
+### Workspaces
+code mount under
+
+```
+/workspaces/<project name>
+```
 ---
 
 ## References
