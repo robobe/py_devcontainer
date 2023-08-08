@@ -283,6 +283,13 @@ services:
 }
 ```
 
+### mounts
+```json
+"mounts": [
+        "src=${localWorkspaceFolder}/app/config,dst=/home/user/data/settings,type=bind"
+    ],
+```
+
 ### VSCode Server
 vscode-server install on container
 
