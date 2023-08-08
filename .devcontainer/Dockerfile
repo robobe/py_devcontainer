@@ -22,6 +22,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN apt-get update && apt-get install -y \
     python3 \
+    python3-pip \
     && apt-get -y clean && rm -rf /var/lib/apt/lists/*
 
 # WORKDIR /home/user
@@ -29,12 +30,20 @@ RUN apt-get update && apt-get install -y \
 # RUN pip install --no-`cache-dir --upgrade -r /home/user/requirements.txt
 
 # ################################################
+FROM python_base as runtime
 
-FROM python_base as development
+RUN apt-get update && apt-get install -y \
+    libgl1\
+    libgl1-mesa-glx \ 
+    libglib2.0-0 \
+    && apt-get -y clean && rm -rf /var/lib/apt/lists/*
+COPY ./requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt
+
+FROM runtime as development
 
 RUN apt-get update && apt-get install -y \
     git \
-    python3-pip \
     python3-all \
     debhelper \
     dh-python \
@@ -44,8 +53,3 @@ RUN apt-get update && apt-get install -y \
     && apt-get -y clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo ${VERSION} > /tmp/version
-
-# WORKDIR /home/user
-# COPY ./requirements.txt /home/user/requirements.txt
-# COPY ./requirements-dev.txt /home/user/requirements-dev.txt
-# RUN pip install --no-`cache-dir --upgrade -r /home/user/requirements-dev.txt

@@ -6,7 +6,6 @@
         "target": "development",
         "args": {"VERSION": "0.0.1"} 
     },
-    "images": "vsc-py_docker_tutorial-27a22f0ad5ce45563a8c1e1e36d26fe581e7e908ac4b3a1afb0317f00f9fbeef:latest",
     "mounts": [
         "src=${localWorkspaceFolder}/app/config,dst=/home/user/data/settings,type=bind"
     ],
