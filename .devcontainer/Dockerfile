@@ -33,9 +33,7 @@ RUN apt-get update && apt-get install -y \
 FROM python_base as runtime
 
 RUN apt-get update && apt-get install -y \
-    libgl1\
-    libgl1-mesa-glx \ 
-    libglib2.0-0 \
+    python3-opencv \
     && apt-get -y clean && rm -rf /var/lib/apt/lists/*
 COPY ./requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt

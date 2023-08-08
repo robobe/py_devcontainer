@@ -1,14 +1,11 @@
-from app.utils import add
-
-
-def calc() -> int:
-    result = add(10, 10)
-    return result
+import cv2
 
 
 def main():
-    calc()
-    print("hello my app")
+    img = cv2.imread("/home/user/data/opencv-logo.png", 0)
+    cv2.imshow("image", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

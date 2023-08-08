@@ -7,7 +7,7 @@
         "args": {"VERSION": "0.0.1"} 
     },
     "mounts": [
-        "src=${localWorkspaceFolder}/app/config,dst=/home/user/data/settings,type=bind"
+        "src=${localWorkspaceFolder}/data,dst=/home/user/data,type=bind"
     ],
     "runArgs": [
         "--hostname=dev",
